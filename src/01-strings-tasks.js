@@ -210,9 +210,9 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  let arr = [];
-  for (let i = 0; i < height; i++) {
-    for (let j = 0; j <= width; j++) {
+  const arr = [];
+  for (let i = 0; i < height; i += 1) {
+    for (let j = 0; j <= width; j += 1) {
       if (i === 0) {
         if (j === 0) {
           arr.push('┌');
@@ -233,14 +233,12 @@ function getRectangleString(width, height) {
         } else {
           arr.push('─');
         }
-      } else  {
-        if (j === 0 || j === width - 1) {
-          arr.push('│');
-        } else if (j === width) {
-          arr.push('\n');
-        } else {
-          arr.push(' ');
-        }
+      } else if (j === 0 || j === width - 1) {
+        arr.push('│');
+      } else if (j === width) {
+        arr.push('\n');
+      } else {
+        arr.push(' ');
       }
     }
   }
@@ -269,7 +267,7 @@ function encodeToRot13(str) {
   const rotAlphabet = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm?! ';
   let res = '';
 
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     const inx = alphabet.indexOf(str[i]);
     res += `${rotAlphabet[inx]}`;
   }
@@ -293,11 +291,11 @@ function isString(value) {
   const str = value;
   if (typeof str === 'string') {
     return true;
-  } else if (typeof str === 'object' && value && value.length) {
-    return true;
-  } else {
-    return false;
   }
+  if (typeof str === 'object' && value && value.length) {
+    return true;
+  }
+  return false;
 }
 
 
